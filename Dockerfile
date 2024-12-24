@@ -48,4 +48,4 @@ COPY . .
 EXPOSE 8000
 
 # Run the application.
-CMD gunicorn 'App:app' --bind=0.0.0.0:8000
+CMD flask run --host=0.0.0.0
