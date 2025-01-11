@@ -40,13 +40,38 @@
 
             <div class="row d-flex flex-column justify-content-center align-items-center d-none" id="imageUploadGroup">
 
-                <div class="col-12 col-md-8 col-lg-6 mx-auto">
+                <div id="loading" class="col-12 col-md-8 col-lg-4 col-xl-3 mx-auto mt-2 d-flex flex-column align-items-center text-center d-none">
+
+                    <div class="spinner-border" role="status"></div>
+                    <p id="notice" class="mt-3 text-nowrap">
+                      Image being analyzed... 
+                      it may take too long; please bear with me.
+                    </p>
+
+                </div>
+
+                <div id="extractedTable" class="col-12 col-md-8 col-lg-4 col-xl-3 mx-auto mt-2 d-flex flex-column align-items-center text-center d-none">
+
+                    <p class="h5">Text Extracted Complete</p>
+                    <table class="table table-bordered" id="resultTable">
+                        <thead>
+                          <tr>
+                            <th scope="col">Row</th>
+                            <th scope="col">Text</th>
+                          </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+
+                </div>
+
+                <div id="fileInputContainer" class="col-12 col-md-8 col-lg-6 mx-auto">
                     <label for="imageUpload" class="form-label">Choose File</label>
                     <input class="form-control" type="file" id="imageUpload" name="file" accept="image/*" required>
                 </div>         
 
-                <div class="col-12col-md-8 mt-2 col-lg-4 col-xl-3 mx-auto d-flex justify-content-center">
-                    <button id="captureBtn" class="btn btn-primary btn-md w-50"><i class="bi bi-image"></i> Send</button>     
+                <div id="sendImageContainer" class="col-12col-md-8 mt-2 col-lg-4 col-xl-3 mx-auto d-flex justify-content-center">
+                    <button id="sendImage" class="btn btn-primary btn-md w-50"><i class="bi bi-image"></i> Send</button>     
                 </div>        
 
             </div>
