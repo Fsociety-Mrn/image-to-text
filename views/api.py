@@ -2,7 +2,7 @@ import easyocr
 import cv2
 import numpy as np
 
-from flask import Blueprint,request,jsonify,json
+from flask import Blueprint,request,jsonify,json,Response
 
 api = Blueprint('api', __name__)
 reader = easyocr.Reader(['en'], gpu=False)
@@ -50,4 +50,25 @@ def receive_image():
 
     except Exception as e:
         return jsonify({"error": f"An error occurred: {str(e)}"}), 500
-    
+
+
+
+@api.route('/video-feed')
+def video_feed():
+    camera = cv2.VideoCapture(0)  # Set height to 1080p
+    return Response(generate_video(camera), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+def generate_video(camera):
+    while True:
+        # Capture video frame-by-frame
+        success, frame = camera.read()
+        if not success:
+            break
+        else:
+            # Encode the frame into JPEG format
+            ret, buffer = cv2.imencode('.jpg', frame)
+            frame = buffer.tobytes()
+            # Yield the frame data in byte format
+            yield (b'--frame\r\n'
+                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
