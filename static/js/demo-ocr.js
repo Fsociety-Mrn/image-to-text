@@ -45,7 +45,7 @@ const sendImage = async () => {
   
     try {
 
-        const response = await fetch("http://127.0.0.1:5000/api/receive-image", {
+        const response = await fetch("/api/receive-image", {
             method: "POST",
             body: formData,
         });
