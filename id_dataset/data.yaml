@@ -1,0 +1,5 @@
+train: H:/Personal Projects/image-to-text/id_dataset/train/images
+val: H:/Personal Projects/image-to-text/id_dataset/val/images
+
+nc: 2
+names: ['id-card', 'tlu-card']
