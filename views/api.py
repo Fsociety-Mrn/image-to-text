@@ -2,10 +2,22 @@ import easyocr
 import cv2
 import numpy as np
 
-from flask import Blueprint,request,jsonify,json,Response
+from flask import Blueprint,request,jsonify,abort,Response
 
 api = Blueprint('api', __name__)
 reader = easyocr.Reader(['en'], gpu=False)
+
+
+
+ALLOWED_IP = '127.0.0.1' 
+def ip_restricted(func):
+    
+    def wrapper(*args, **kwargs):
+        if request.remote_addr != ALLOWED_IP:
+            abort(403) 
+        return func(*args, **kwargs)
+    return wrapper
+
 
 
 def easy_ocr(image):
@@ -14,8 +26,10 @@ def easy_ocr(image):
         [{"row": i + 1, "text": text} for i, (_, text, _) in enumerate(results)] 
     )
     
-    
+
+        
 @api.route('/api/receive-image', methods=['POST'])
+@ip_restricted
 def receive_image():
     
     file = request.files.get('file')
