@@ -1,12 +1,11 @@
 # app.py
-from flask import Flask
+from flask import Flask,request,abort
 from views import pages, api
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
  
-
 app.register_blueprint(pages)
 app.register_blueprint(api)
 
