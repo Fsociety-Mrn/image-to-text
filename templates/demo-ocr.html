@@ -21,26 +21,12 @@
             <div class="row text-center">
                 <h1>OCR Web Application Demo</h1>
                 <p id="notice">Upload or scan your ID card.</p>
-                <!-- <p id="notice">Please place your ID card into the box properly.</p>                 -->
             </div>
 
-            <div class="row position-relative">
+
+            <div class="row d-flex flex-column justify-content-center align-items-center">
+                
                 <!-- <img id="im" class="w-100" src="{{ url_for('api.video_feed') }}"> -->
-
-                <video id="video" class="d-none" width="640" height="360" autoplay></video>
-                <canvas id="canvas" class="position-absolute top-0 start-0 d-none" ></canvas>
-            </div>
-
-            <div class="row d-none" id="captureBtnGroup">
-
-                <div class="col-md-8 mt-2 col-lg-4 col-xl-3 mx-auto d-flex justify-content-center">
-                    <button id="captureBtn" class="btn btn-primary btn-md w-50"><i class="bi bi-camera-fill"></i> Capture</button>     
-                </div>    
-
-            </div>
-
-
-            <div class="row d-flex flex-column justify-content-center align-items-center d-none" id="imageUploadGroup">
 
                 <div id="loading" class="col-12 col-md-8 col-lg-4 col-xl-3 mx-auto mt-2 d-flex flex-column align-items-center text-center d-none">
 
@@ -66,6 +52,25 @@
                     </table>
 
                 </div>
+            </div>
+
+
+            <div class="row position-relative">
+                <video id="video" class="d-none" width="800" height="400" autoplay></video>
+                <canvas id="canvas" class="position-absolute top-0 start-0 d-none" ></canvas>
+            </div>
+
+
+            <div class="row d-none" id="captureBtnGroup">
+
+                <div class="col-md-8 mt-2 col-lg-4 col-xl-3 mx-auto d-flex justify-content-center">
+                    <button id="captureBtn" class="btn btn-primary btn-md w-50"><i class="bi bi-camera-fill"></i> Capture</button>     
+                </div>    
+
+            </div>
+
+
+            <div class="row d-flex flex-column justify-content-center align-items-center d-none" id="imageUploadGroup">
 
                 <div id="fileInputContainer" class="col-12 col-md-8 col-lg-6 mx-auto">
                     <label for="imageUpload" class="form-label">Choose File</label>
