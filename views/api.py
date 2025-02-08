@@ -33,6 +33,7 @@ def receive_image():
             return jsonify({"error": "Failed to decode image"}), 400
 
         result = easy_ocr(image)
+            
         if result is None:
             return jsonify(
                 {
@@ -53,22 +54,22 @@ def receive_image():
 
 
 
-@api.route('/video-feed')
-def video_feed():
-    camera = cv2.VideoCapture(0)  # Set height to 1080p
-    return Response(generate_video(camera), mimetype='multipart/x-mixed-replace; boundary=frame')
+# @api.route('/video-feed')
+# def video_feed():
+#     camera = cv2.VideoCapture(0)  # Set height to 1080p
+#     return Response(generate_video(camera), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
-def generate_video(camera):
-    while True:
-        # Capture video frame-by-frame
-        success, frame = camera.read()
-        if not success:
-            break
-        else:
-            # Encode the frame into JPEG format
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            # Yield the frame data in byte format
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+# def generate_video(camera):
+#     while True:
+#         # Capture video frame-by-frame
+#         success, frame = camera.read()
+#         if not success:
+#             break
+#         else:
+#             # Encode the frame into JPEG format
+#             ret, buffer = cv2.imencode('.jpg', frame)
+#             frame = buffer.tobytes()
+#             # Yield the frame data in byte format
+#             yield (b'--frame\r\n'
+#                    b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
